@@ -15,14 +15,14 @@ iface lo inet loopback
 
 auto enX0
 iface enX0 inet static
-EOF
+EOF'
 #Configuracion tarjeta
 sudo bash -c 'cat << EOF > /etc/default/isc-dhcp-server
 # On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
 #	Separate multiple interfaces with spaces, e.g. "eth0 eth1".
 INTERFACESv4="enX0"
 INTERFACESv6=""
-EOF
+EOF'
 #Configuracion dhcp
 sudo bash -c 'cat << EOF > /etc/dhcp/dhcp.conf
 authoritative;
@@ -51,7 +51,7 @@ subnet 172.31.16.0 netmask 255.255.240.0 {
     range 192.168.2.13 192.168.2.16;
   }
 }
-EOF
+EOF'
 
 systemctl restart isc-dhcp-server
 systemctl status isc-dhcp-server
