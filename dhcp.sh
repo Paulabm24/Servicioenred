@@ -5,6 +5,7 @@ apt install isc-dhcp-server
 #Configuracion de la red
 
 #Configuracion tarjeta
+sudo bash -c 'cat << EOF > /etc/default/isc-dhcp-server
 
 #Configuracion dhcp
 
