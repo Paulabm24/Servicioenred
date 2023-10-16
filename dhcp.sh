@@ -14,7 +14,7 @@ auto lo
 iface lo inet loopback
 
 auto enX0
-iface enp0s3 inet static
+iface enX0 inet static
 EOF
 #Configuracion tarjeta
 sudo bash -c 'cat << EOF > /etc/default/isc-dhcp-server
