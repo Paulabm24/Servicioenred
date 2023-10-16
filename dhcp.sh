@@ -10,7 +10,7 @@ sudo bash -c 'cat << EOF > /etc/network/interfaces
 sudo bash -c 'cat << EOF > /etc/default/isc-dhcp-server
 # On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
 #	Separate multiple interfaces with spaces, e.g. "eth0 eth1".
-INTERFACESv4="enp0s8"
+INTERFACESv4="enX0"
 INTERFACESv6=""
 EOF
 #Configuracion dhcp
@@ -31,9 +31,9 @@ failover peer "FAILOVER" {
   split 128;
 }
 
-subnet 192.168.2.0 netmask 255.255.255.0 {
-  option broadcast-address 192.168.2.255;
-  option routers 192.168.2.1;
+subnet 172.31.16.0 netmask 255.255.240.0 {
+  option broadcast-address 172.31.15.255;
+  option routers 172.31.16.1;
   option domain-name-servers 8.8.8.8, 8.8.4.4;
   pool {
     failover peer "FAILOVER";
