@@ -15,6 +15,9 @@ iface lo inet loopback
 
 auto enX0
 iface enX0 inet static
+address 172.31.17.81
+mask 255.255.240.0
+gateway 172.31.16.1
 EOF'
 #Configuracion tarjeta
 sudo bash -c 'cat << EOF > /etc/default/isc-dhcp-server
@@ -30,9 +33,9 @@ ddns-update-style none;
 
 failover peer "FAILOVER" {
   primary; 
-  address 192.168.2.3;
+  address 172.31.17.81;
   port 647;
-  peer address 192.168.2.4;
+  peer address 172.31.17.82;
   peer port 647;
   max-unacked-updates 10;
   max-response-delay 30;
@@ -42,13 +45,13 @@ failover peer "FAILOVER" {
 }
 
 subnet 172.31.16.0 netmask 255.255.240.0 {
-  option broadcast-address 172.31.15.255;
+  option broadcast-address 172.31.31.255;
   option routers 172.31.16.1;
   option domain-name-servers 8.8.8.8, 8.8.4.4;
   pool {
     failover peer "FAILOVER";
     max-lease-time 3600;
-    range 192.168.2.13 192.168.2.16;
+    range 172.31.17.83 172.31.17.89;
   }
 }
 EOF'
